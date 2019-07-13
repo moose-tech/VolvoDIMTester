@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29001.49
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIM_Test", "DIM_Test\DIM_Test.csproj", "{A2942B3D-207E-490A-9797-217A8EFD3CFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2942B3D-207E-490A-9797-217A8EFD3CFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2942B3D-207E-490A-9797-217A8EFD3CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2942B3D-207E-490A-9797-217A8EFD3CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2942B3D-207E-490A-9797-217A8EFD3CFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B114B6B8-0039-4BED-A4A2-6922EFEAA3E9}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,10 @@
+C:\Users\tonyc\source\repos\DIM_Test\DIM_Test\bin\Release\DIM_Test.exe.config
+C:\Users\tonyc\source\repos\DIM_Test\DIM_Test\bin\Release\DIM_Test.exe
+C:\Users\tonyc\source\repos\DIM_Test\DIM_Test\bin\Release\DIM_Test.pdb
+C:\Users\tonyc\source\repos\DIM_Test\DIM_Test\obj\Release\DIM_Test.csprojAssemblyReference.cache
+C:\Users\tonyc\source\repos\DIM_Test\DIM_Test\obj\Release\DIM_Test.Form1.resources
+C:\Users\tonyc\source\repos\DIM_Test\DIM_Test\obj\Release\DIM_Test.Properties.Resources.resources
+C:\Users\tonyc\source\repos\DIM_Test\DIM_Test\obj\Release\DIM_Test.csproj.GenerateResource.cache
+C:\Users\tonyc\source\repos\DIM_Test\DIM_Test\obj\Release\DIM_Test.csproj.CoreCompileInputs.cache
+C:\Users\tonyc\source\repos\DIM_Test\DIM_Test\obj\Release\DIM_Test.exe
+C:\Users\tonyc\source\repos\DIM_Test\DIM_Test\obj\Release\DIM_Test.pdb
