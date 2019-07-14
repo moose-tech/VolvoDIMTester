@@ -15,7 +15,7 @@ Tester je postaven na volně prodejných komponentech, Arduino + CAN Bus modul.
 
 ## Postup
 1. Pokud máte CAN-Bus modul s krystalem 8MHz nejprve jej vyměňte za správný 16MHz.
-2. Propojte CAN-Bus modul s arduinem.
+2. Propojte CAN-Bus modul s arduinem. https://github.com/moose-tech/VolvoDIMTester/tree/master/img/arduino_can.png
 3. Pokud je arduino klon s usb převodníkem CH340G. Nainstalujte ovladače https://arduino-shop.cz/docs/produkty/0/142/driver_ch341ser.ZIP
 4. Stáhněte Arduino IDE https://www.arduino.cc/en/main/software
 5. Importujte tuto knihovnu do IDE https://github.com/moose-tech/VolvoDIMTester/tree/master/libraries
