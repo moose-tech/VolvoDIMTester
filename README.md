@@ -19,7 +19,7 @@ Tester je postaven na volně prodejných komponentech, Arduino + CAN Bus modul.
 5. Importujte tuto knihovnu do IDE https://github.com/sparkfun/SparkFun_CAN-Bus_Arduino_Library
 6. Nahrajte soubor .ino do arduina.
 7. Stáhněte soubor .exe pro ovládání.
-8. Připojte DIM
+8. Připojte DIM dle https://github.com/moose-tech/VolvoDIMTester/img
 
 ## Kde zakoupit komponenty?
 Arduino UNO
