@@ -1,4 +1,4 @@
-# Volvo DIM Tester
+# Volvo DIM Tester MY00-11
 
 ## K čemu je DIM Tester dobrý?
 Tester lze použít pro ověření funkčnosti či úspěšnosti opravy (např: technologické chyba pájení). Tento tester vám umožní vyzkoušet vše potřebné přímo na vašem stole bez nutnosti přítomnosti vozu.
