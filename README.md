@@ -8,7 +8,9 @@ Tester je postaven na volně prodejných komponentech, Arduino + CAN Bus modul.
 
 ## Seznam komponentů
 1x Arduino UNO
+
 1x CAN-Bus modul (POZOR!! Čínské moduly obsahují krystal 8MHz, nutností pro funkčnost je 16MHz)
+
 1x Krystal 16MHz (V případě zakoupení CAN-Bus modulu s krystalem 8MHz)
 
 ## Postup
