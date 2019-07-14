@@ -16,10 +16,10 @@ Tester je postaven na volně prodejných komponentech, Arduino + CAN Bus modul.
 2. Propojte CAN-Bus modul s arduinem.
 3. Pokud je arduino klon s usb převodníkem CH340G. Nainstalujte ovladače https://arduino-shop.cz/docs/produkty/0/142/driver_ch341ser.ZIP
 4. Stáhněte Arduino IDE https://www.arduino.cc/en/main/software
-5. Importujte tuto knihovnu do IDE https://github.com/sparkfun/SparkFun_CAN-Bus_Arduino_Library
+5. Importujte tuto knihovnu do IDE https://github.com/moose-tech/VolvoDIMTester/tree/master/libraries
 6. Nahrajte soubor .ino do arduina.
 7. Stáhněte soubor .exe pro ovládání.
-8. Připojte DIM dle https://github.com/moose-tech/VolvoDIMTester/img
+8. Připojte DIM dle https://github.com/moose-tech/VolvoDIMTester/tree/master/img
 
 ## Kde zakoupit komponenty?
 Arduino UNO
