@@ -1,4 +1,4 @@
-# Volvo DIM Tester
+# Volvo DIM Tester MY00-11
 
 ## K čemu je DIM Tester dobrý?
 Tester lze použít pro ověření funkčnosti či úspěšnosti opravy (např: technologické chyba pájení). Tento tester vám umožní vyzkoušet vše potřebné přímo na vašem stole bez nutnosti přítomnosti vozu.
@@ -15,12 +15,12 @@ Tester je postaven na volně prodejných komponentech, Arduino + CAN Bus modul.
 
 ## Postup
 1. Pokud máte CAN-Bus modul s krystalem 8MHz nejprve jej vyměňte za správný 16MHz.
-2. Propojte CAN-Bus modul s arduinem.
+2. Propojte CAN-Bus modul s arduinem. https://github.com/moose-tech/VolvoDIMTester/tree/master/img/arduino_can.png
 3. Pokud je arduino klon s usb převodníkem CH340G. Nainstalujte ovladače https://arduino-shop.cz/docs/produkty/0/142/driver_ch341ser.ZIP
 4. Stáhněte Arduino IDE https://www.arduino.cc/en/main/software
 5. Importujte tuto knihovnu do IDE https://github.com/moose-tech/VolvoDIMTester/tree/master/libraries
-6. Nahrajte soubor .ino do arduina.
-7. Stáhněte soubor .exe pro ovládání.
+6. Nahrajte soubor .ino do arduina. https://github.com/moose-tech/VolvoDIMTester/raw/master/DIM_tester.ino
+7. Stáhněte soubor .exe pro ovládání. https://github.com/moose-tech/VolvoDIMTester/raw/master/src/DIM_Test/DIM_Test/bin/Release/DIM_Test.exe
 8. Připojte DIM dle https://github.com/moose-tech/VolvoDIMTester/tree/master/img
 
 ## Kde zakoupit komponenty?
