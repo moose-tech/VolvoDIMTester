@@ -155,7 +155,7 @@
             this.radioButton2.Size = new System.Drawing.Size(42, 20);
             this.radioButton2.TabIndex = 7;
             this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "P3";
+            this.radioButton2.Text = "P3 (MY08 - MY11)";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton1

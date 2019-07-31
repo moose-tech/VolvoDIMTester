@@ -1,135 +1,70 @@
-/****************************************************************************
-  CAN Write Demo for the SparkFun CAN Bus Shield.
+#include <mcp_can.h>
+#include <SPI.h>
 
-  Written by Stephen McCoy.
-  Original tutorial available here: http://www.instructables.com/id/CAN-Bus-Sniffing-and-Broadcasting-with-Arduino
-  Used with permission 2016. License CC By SA.
+const int SPI_CS_PIN = 10;
 
-  Distributed as-is; no warranty is given.
-*************************************************************************/
+MCP_CAN CAN(SPI_CS_PIN); // Set CS pin
 
-#include <Canbus.h>
-#include <defaults.h>
-#include <global.h>
-#include <mcp2515.h>
-#include <mcp2515_defs.h>
-
-//********************************Setup Loop*********************************//
-
-void setup() {
+void setup()
+{
   Serial.begin(9600);
-  Canbus.init(CANSPEED_125);
+  CAN.begin(CAN_125KBPS);
 }
 
-//********************************Main Loop*********************************//
+//P2_IGN_ON
+unsigned char stmp[8] = {0x8E, 0x00, 0x1C, 0x36, 0x70, 0x1F, 0x08, 0x00};
+unsigned char stmp2[8] = {0xCB, 0x51, 0xB9, 0xF0, 0x00, 0x00, 0x00, 0x00};
 
-void loop() {
-  tCAN message;
-  tCAN message2;
-  char receiveVal;
+//P2_TEST
+unsigned char stmp3[8] = {0xCC, 0x51, 0xB2, 0x02, 0x80, 0x00, 0x00, 0x00};
+
+//P3_IGN_ON + BRIGHTNESS
+unsigned char stmp4[8] = {0x00, 0xFB, 0x9B, 0x20, 0x00, 0x1F, 0xE0, 0x20};
+unsigned char stmp5[8] = {0x20, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
+//P3_TEST
+unsigned char stmp6[8] = {0x04, 0x31, 0x01, 0x02, 0x02, 0x00, 0x00, 0x00};
+
+//P3_IGN_OFF
+unsigned char stmp7[8] = {0x00, 0xFB, 0x86, 0x20, 0x00, 0x1F, 0xE0, 0x20};
+
+void loop()
+{
+  byte receiveVal;
 
   if (Serial.available() > 0)
   {
     receiveVal = Serial.read();
 
     switch (receiveVal) {
-      //IGN ON P2 + set brightness
-      case '0':
-        message.id = 0x07E; //formatted in HEX
-        message.header.rtr = 0;
-        message.header.length = 8; //formatted in DEC
-        message.data[0] = 0x00;
-        message.data[1] = 0x93;
-        message.data[2] = 0x9A;
-        message.data[3] = 0x00; //formatted in HEX
-        message.data[4] = 0x00;
-        message.data[5] = 0x00;
-        message.data[6] = 0x00;
-        message.data[7] = 0x24;
-        mcp2515_bit_modify(CANCTRL, (1 << REQOP2) | (1 << REQOP1) | (1 << REQOP0), 0);
-        mcp2515_send_message(&message);
-        message2.id = 0x2A0;
-        message2.header.rtr = 0;
-        message2.header.length = 8;
-        message2.data[0] = 0x20;
-        message2.data[1] = 0x0F;
-        mcp2515_bit_modify(CANCTRL, (1 << REQOP2) | (1 << REQOP1) | (1 << REQOP0), 0);
-        mcp2515_send_message(&message2);
+      //IGN ON P2
+      case 0x01:
+        CAN.sendMsgBuf(0x00513FFC, 1, 8, stmp);
+        while (true) {
+          CAN.sendMsgBuf(0x000FFFFE, 1, 8, stmp2);
+        }
         break;
 
       //Test P2
-      case '1':
-        message.id = 0x720;
-        message.header.rtr = 0;
-        message.header.length = 8;
-        message.data[0] = 0x04;
-        message.data[1] = 0x31;
-        message.data[2] = 0x01;
-        message.data[3] = 0x02;
-        message.data[4] = 0x02;
-        mcp2515_bit_modify(CANCTRL, (1 << REQOP2) | (1 << REQOP1) | (1 << REQOP0), 0);
-        mcp2515_send_message(&message);
+      case 0x02:
+        CAN.sendMsgBuf(0x000FFFFE, 1, 8, stmp3);
         break;
 
       //IGN ON P3 + set brightness
-      case '2':
-        message.id = 0x07E; //formatted in HEX
-        message.header.rtr = 0;
-        message.header.length = 8; //formatted in DEC
-        message.data[0] = 0x00;
-        message.data[1] = 0xFB;
-        message.data[2] = 0x9B;
-        message.data[3] = 0x20; //formatted in HEX
-        message.data[4] = 0x00;
-        message.data[5] = 0x1F;
-        message.data[6] = 0xE0;
-        message.data[7] = 0x20;
-        mcp2515_bit_modify(CANCTRL, (1 << REQOP2) | (1 << REQOP1) | (1 << REQOP0), 0);
-        mcp2515_send_message(&message);
-        message2.id = 0x2A0;
-        message2.header.rtr = 0;
-        message2.header.length = 8;
-        message2.data[0] = 0x20;
-        message2.data[1] = 0x0F;
-        mcp2515_bit_modify(CANCTRL, (1 << REQOP2) | (1 << REQOP1) | (1 << REQOP0), 0);
-        mcp2515_send_message(&message2);
+      case 0x03:
+        CAN.sendMsgBuf(0x07E, 0, 8, stmp4);
+        CAN.sendMsgBuf(0x2A0, 0, 8, stmp5);
         break;
 
       //Test P3
-      case '3':
-        message.id = 0x720;
-        message.header.rtr = 0;
-        message.header.length = 8;
-        message.data[0] = 0x04;
-        message.data[1] = 0x31;
-        message.data[2] = 0x01;
-        message.data[3] = 0x02;
-        message.data[4] = 0x02;
-        mcp2515_bit_modify(CANCTRL, (1 << REQOP2) | (1 << REQOP1) | (1 << REQOP0), 0);
-        mcp2515_send_message(&message);
+      case 0x04:
+        CAN.sendMsgBuf(0x720, 0, 8, stmp6);
         break;
 
       //IGN OFF P3
-      case '4':
-        message.id = 0x07E; //formatted in HEX
-        message.header.rtr = 0;
-        message.header.length = 8; //formatted in DEC
-        message.data[0] = 0x00;
-        message.data[1] = 0xFB;
-        message.data[2] = 0x86;
-        message.data[3] = 0x20; //formatted in HEX
-        message.data[4] = 0x00;
-        message.data[5] = 0x1F;
-        message.data[6] = 0xE0;
-        message.data[7] = 0x20;
-        mcp2515_bit_modify(CANCTRL, (1 << REQOP2) | (1 << REQOP1) | (1 << REQOP0), 0);
-        mcp2515_send_message(&message);
+      case 0x05:
+        CAN.sendMsgBuf(0x07E, 0, 8, stmp7);
         break;
-
-      //IGN OFF P2
-      /*case '5':
-        
-        break;*/
     }
   }
 }

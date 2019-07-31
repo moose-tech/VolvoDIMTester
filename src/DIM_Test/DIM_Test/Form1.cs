@@ -16,6 +16,7 @@ namespace DIM_Test
     {
         SerialPort port;
         string[] ports = SerialPort.GetPortNames();
+        bool p2_ignition = false;
         public Form1()
         {
             InitializeComponent();
@@ -37,12 +38,17 @@ namespace DIM_Test
         {
             if (radioButton1.Checked == true)
             {
-                Thread newThread = new Thread(PortWrite_P2_ign_off);
-                newThread.Start();
+                if (p2_ignition == true)
+                {
+                    //IGN Off P2
+                    MessageBox.Show("Zapalování vypnete stiskem tlačítka RESET na Arduinu.");
+                }
             }
             else if (radioButton2.Checked == true)
             {
-                PortWrite("4");
+                //IGN Off P3
+                byte[] bytesTosend = new byte[1] { 0x05 };
+                port.Write(bytesTosend, 0, 1);
             }
             if (port != null && port.IsOpen)
             {
@@ -76,7 +82,7 @@ namespace DIM_Test
                 button2.Visible = true;
                 button3.Visible = true;
                 button1.Enabled = false;
-                port = new SerialPort(comboBox1.SelectedItem.ToString(), 9600);//Set your board COM
+                port = new SerialPort(comboBox1.SelectedItem.ToString(), 9600); //Set your board COM
                 port.Open();
                 
             }
@@ -89,12 +95,16 @@ namespace DIM_Test
                 button3.Text = "Vypnout zapalování";
                 if (radioButton1.Checked == true)
                 {
-                    Thread newThread = new Thread(PortWrite_P2_ign);
-                    newThread.Start();
+                    p2_ignition = true;
+                    //IGN On P2
+                    byte[] bytesTosend = new byte[1] { 0x01 };
+                    port.Write(bytesTosend, 0, 1);
                 }
                 else if (radioButton2.Checked == true)
                 {
-                    PortWrite("2");
+                    //IGN On P3
+                    byte[] bytesTosend = new byte[1] { 0x03 };
+                    port.Write(bytesTosend, 0, 1);
                 }
             }
             else if (button3.Text == "Vypnout zapalování")
@@ -102,12 +112,14 @@ namespace DIM_Test
                 button3.Text = "Zapnout zapalování";
                 if (radioButton1.Checked == true)
                 {
-                    Thread newThread = new Thread(PortWrite_P2_ign_off);
-                    newThread.Start();
+                    //IGN Off P2
+                    MessageBox.Show("Zapalování vypnete stiskem tlačítka RESET na Arduinu.");
                 }
                 else if (radioButton2.Checked == true)
                 {
-                    PortWrite("4");
+                    //IGN Off P3
+                    byte[] bytesTosend = new byte[1] { 0x05 };
+                    port.Write(bytesTosend, 0, 1);
                 }
             }
         }
@@ -116,63 +128,16 @@ namespace DIM_Test
         {
             if (radioButton1.Checked == true)
             {
-                Thread newThread = new Thread(PortWrite_P2_test);
-                newThread.Start();
+                //Test P2
+                byte[] bytesTosend = new byte[1] { 0x02 };
+                port.Write(bytesTosend, 0, 1);
             }
             else if (radioButton2.Checked == true)
             {
-                PortWrite("3");
+                //Test P3
+                byte[] bytesTosend = new byte[1] { 0x04 };
+                port.Write(bytesTosend, 0, 1);
             }
-        }
-
-        private void PortWrite_P2_ign()
-        {
-            while (true)
-            {
-                try
-                { 
-                    port.Write("0");
-                }
-                catch
-                {
-                    Thread.CurrentThread.Abort();
-                }
-            }
-        }
-
-        private void PortWrite_P2_ign_off()
-        {
-            while (true)
-            {
-                try
-                {
-                    port.Write("5");
-                }
-                catch
-                {
-                    Thread.CurrentThread.Abort();
-                }
-            }
-        }
-
-        private void PortWrite_P2_test()
-        {
-            while (true)
-            {
-                try
-                {
-                    port.Write("1");
-                }
-                catch
-                {
-                    Thread.CurrentThread.Abort();
-                }
-            }
-        }
-
-        private void PortWrite(string message)
-        {
-            port.Write(message);
         }
     }
 }
